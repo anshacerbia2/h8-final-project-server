@@ -9,7 +9,7 @@ class userController {
                 role: `customer`
             })
             res.status(201).json({
-                message: `User has been created`
+                msg: `User has been created`
             })
         } catch (err) {
             next(err)
@@ -26,7 +26,7 @@ class userController {
                 role: `seller`
             })
             res.status(201).json({
-                message: `User has been created`
+                msg: `User has been created`
             })
         } catch (err) {
             next(err)
@@ -43,7 +43,7 @@ class userController {
                 role: `admin`
             })
             res.status(201).json({
-                message: `User has been created`
+                msg: `User has been created`
             })
         } catch (err) {
             next(err)
@@ -62,11 +62,11 @@ class userController {
                 }
             })
             if (!data) {
-                throw {name: `Email or Username and Password is Invalid`}
+                throw {msg: `Email or Username and Password is Invalid`}
             }
             const validPass = bcrypt.compareSync(password, data.password)
             if (!validPass) {
-                throw {name: `Email or Username and Password is Invalid`}
+                throw {msg: `Email or Username and Password is Invalid`}
             }
             const payload = {
                 id: data.id,
