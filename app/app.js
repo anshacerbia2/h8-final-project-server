@@ -35,6 +35,10 @@ app.use((err, req, res, next) => {
       code = 401;
       msg = err.msg;
       break;
+    case `Forbidden`:
+      code = 403;
+      msg = err.msg;
+      break;
     default:
       break;
   }
