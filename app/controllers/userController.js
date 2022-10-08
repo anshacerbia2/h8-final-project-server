@@ -1,3 +1,8 @@
+const { User } = require("../models");
+const { Op } = require("sequelize");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 class userController {
     static async handleRegisterCust(req, res, next){
         try {
@@ -57,7 +62,6 @@ class userController {
                 where: {
                     [Op.or]: {
                         email,
-                        username: email
                     } 
                 }
             })
@@ -73,12 +77,13 @@ class userController {
                 email: data.email,
                 role: data.role
             }
-            const access_token = jwt.sign(payload, process.env.SECRET)
+            const access_token = jwt.sign(payload, "secret")
             res.status(200).json({
                 access_token,
                 username: data.username
             })
         } catch (err) {
+            console.log(err)
             next(err)
         }
     }
