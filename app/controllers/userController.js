@@ -1,6 +1,7 @@
 const {User} = require('../models');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { Op } = require('sequelize');
 class userController {
     static async handleRegisterCust(req, res, next){
         try {

@@ -1,4 +1,4 @@
-const {Product, Location, SubCategory, Category, User} = require('../models');
+const {Product, Location, SubCategory, Category, User, sequelize, Image} = require('../models');
 
 class productController {
     static async readAll(req, res, next){
@@ -33,9 +33,54 @@ class productController {
         }
     }
     static async add(req, res, next){
+        const t = await sequelize.transaction();
         try {
-            
+            const {
+                name, 
+                description, 
+                price, 
+                mainImg, 
+                harvestDate, 
+                unit,
+                stock,
+                SubCategoryId,
+                location,
+                listImages
+            } = req.body
+
+            const {id: UserId} = req.user
+            const addedProduct = await Product.Create({
+                name, 
+                description, 
+                price, 
+                mainImg, 
+                harvestDate, 
+                unit,
+                stock,
+                SubCategoryId,
+                UserId  
+            }, {
+                transaction: t
+            })
+
+            listImages.forEach(el => el.ProductId = addedProduct.id);
+
+            const addedImages = await Image.bulkCreate(listImages, {
+                transaction: t
+            })
+
+            const addLocation = await Location.Create({
+                ...location,
+                ProductId: addedProduct.id
+            }, {
+                transaction: t
+            })
+            t.commit()
+            res.status(201).json({
+                msg: `Added New Product`
+            })
         } catch (err) {
+            t.rollback()
             next(err)
         }
     }

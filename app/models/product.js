@@ -132,5 +132,9 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Product',
   });
+  Product.beforeCreate((value) => {
+    value.slug = value.name.replaceAll(' ', '-')
+  })
+
   return Product;
 };
