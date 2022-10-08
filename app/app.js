@@ -15,6 +15,7 @@ app.use(express.json());
 app.use('/', router)
 
 app.use((err, req, res, next) => {
+  console.log("🚀 ~ file: app.js ~ line 18 ~ app.use ~ err", err)
   let code = 500;
   let msg = `Internal Server Error`;
 
