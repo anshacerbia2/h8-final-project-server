@@ -1,0 +1,30 @@
+  [
+    {
+      "id": 1,
+      "name": "Sayuran",
+      "CategoryId": 2,
+      "createdAt": "2022-8-06T00:00:00.000Z",
+      "updatedAt": "2022-8-06T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Buah-buahan",
+      "CategoryId": 2,
+      "createdAt": "2022-8-06T00:00:00.000Z",
+      "updatedAt": "2022-8-06T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "Tanaman Obat-obatan",
+      "CategoryId": 2,
+      "createdAt": "2022-8-06T00:00:00.000Z",
+      "updatedAt": "2022-8-06T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "name": "Tanaman Hias",
+      "CategoryId": 2,
+      "createdAt": "2022-8-06T00:00:00.000Z",
+      "updatedAt": "2022-8-06T00:00:00.000Z"
+    }
+  ]

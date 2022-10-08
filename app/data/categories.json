@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Pangan",
+    "createdAt": "2022-8-06T00:00:00.000Z",
+    "updatedAt": "2022-8-06T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "name": "Hortikultura",
+    "createdAt": "2022-8-06T00:00:00.000Z",
+    "updatedAt": "2022-8-06T00:00:00.000Z"
+  }
+]

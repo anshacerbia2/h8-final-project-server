@@ -1,0 +1,20 @@
+[
+  {
+    "fName": "Ansha",
+    "lName": "Cerbia",
+    "email": "sc.anshacerbia@gmail.com",
+    "password": "123456",
+    "phoneNumber": "081563456789",
+    "role": "superadmin",
+    "userImg": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+  },
+  {
+    "fName": "Ryan",
+    "lName": "Ariq",
+    "email": "ryan@hck8.com",
+    "phoneNumber": "081563456789",
+    "password": "ryan",
+    "role": "superadmin",
+    "userImg": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "ProductId": 1,
+    "imgUrl": "https://cdn0-production-images-kly.akamaized.net/2u_PouXzEJ7_1NmWbJVgEo_ynH0=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/1564246/original/025470000_1491972534-Tomat-2.jpg",
+    "createdAt": "2022-8-06T00:00:00.000Z",
+    "updatedAt": "2022-8-06T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "ProductId": 1,
+    "imgUrl": "https://img.inews.co.id/media/822/files/inews_new/2021/02/04/IMG_04022021_145030__822_x_430_piksel_.jpg",
+    "createdAt": "2022-8-06T00:00:00.000Z",
+    "updatedAt": "2022-8-06T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "ProductId": 1,
+    "imgUrl": "https://s3.theasianparent.com/tap-assets-prod/wp-content/uploads/sites/24/2020/08/different-tomatoes-wooden-box-mini-buckets-grey-wooden-wall-top-view_176474-5696.jpg",
+    "createdAt": "2022-8-06T00:00:00.000Z",
+    "updatedAt": "2022-8-06T00:00:00.000Z"
+  }
+]
