@@ -53,7 +53,7 @@ class productController {
             } = req.body
 
             const {id: UserId} = req.user
-            const addedProduct = await Product.Create({
+            const addedProduct = await Product.create({
                 name, 
                 description, 
                 price, 
@@ -73,7 +73,7 @@ class productController {
                 transaction: t
             })
 
-            const addLocation = await Location.Create({
+            const addLocation = await Location.create({
                 ...location,
                 ProductId: addedProduct.id
             }, {
@@ -89,9 +89,70 @@ class productController {
         }
     }
     static async edit(req, res, next){
+        const t = await sequelize.transaction();
         try {
-            
+            const {
+                name, 
+                description, 
+                price, 
+                mainImg, 
+                harvestDate, 
+                unit,
+                stock,
+                SubCategoryId,
+                listImages
+            } = req.body
+            const {id} = req.params
+            Product.Update()
+
+            const updated = await Product.update({
+                name, 
+                description, 
+                price, 
+                mainImg, 
+                harvestDate, 
+                unit,
+                stock,
+                SubCategoryId
+            },
+            {
+                where: {
+                    id
+                }
+            }, {
+                transaction: t
+            })
+
+            const readOldImage = await Image.findAll({
+                where: {
+                    id
+                }
+            },{
+                transaction: t
+            })
+
+            const oldImageId = readOldImage.map(el => el.id)
+
+            const deleteOldImg = await Image.destroy({
+                where: {
+                    id: oldImageId
+                }
+            }, {
+                transaction: t
+            })
+
+            listImages.forEach(el => el.ProductId = id);
+
+            const newImages = await Image.bulkCreate(listImages, {
+                transaction: t
+            })
+
+            await t.commit()
+            res.status(201).json({
+                msg: `Updated Product with id ${id}`
+            })
         } catch (err) {
+            await t.rollback()
             next(err)
         }
     }
