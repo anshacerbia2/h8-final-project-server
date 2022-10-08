@@ -42,7 +42,7 @@ AuthorizationAdmin = async (req, res, next) => {
     if (!data) {
         throw {msg: `Not Found`}
     }
-    if (role === `admin`) {
+    if (data.role === `admin`) {
         next()
     } else {
       throw {msg: `Forbidden`}
@@ -67,7 +67,7 @@ AuthorizationCust = async (req, res, next) => {
     if (!data) {
         throw {msg: `Not Found`}
     }
-    if (role === `admin` || role === `customer`) {
+    if (data.role === `admin` || data.role === `customer`) {
         next()
     } else {
       throw {msg: `Forbidden`}
@@ -80,7 +80,7 @@ AuthorizationCust = async (req, res, next) => {
 AuthorizationSeller = async (req, res, next) => {
   try {
     const {access_token} = req.headers
-    const {id: userId, role} = req.user
+    const {id: userId} = req.user
     const isValid = jwt.verify(access_token, process.env.SECRET);
     if (!isValid) {
       throw { msg: `Forbidden` };
@@ -92,7 +92,7 @@ AuthorizationSeller = async (req, res, next) => {
     if (!data) {
         throw {msg: `Not Found`}
     }
-    if (role === `admin`|| role === `seller`) {
+    if (data.role === `admin`|| data.role === `seller`) {
         next()
     } else {
       throw {msg: `Forbidden`}
