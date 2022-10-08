@@ -148,7 +148,7 @@ class productController {
             })
 
             await t.commit()
-            res.status(201).json({
+            res.status(200).json({
                 msg: `Updated Product with id ${id}`
             })
         } catch (err) {
@@ -158,7 +158,15 @@ class productController {
     }
     static async delete(req, res, next){
         try {
-            
+            const {id} = req.params
+            await Product.destroy({
+                where: {
+                    id
+                }
+            })
+            res.status(200).json({
+                msg: `Product deleted succesfully`
+            })
         } catch (err) {
             next(err)
         }
