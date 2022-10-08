@@ -20,11 +20,15 @@ class productController {
                         model: User,
                         attributes: ['fName', 'lName', 'email']
                     }, 
-                    Location, 
+                    {
+                        model: Location,
+                        attributes: ['city', 'cityId', 'provId']
+                    }, 
                     {
                         model: SubCategory,
                         include: Category
-                    }
+                    },
+                    Image
                 ]
             })
             res.status(200).json(data)
@@ -75,12 +79,12 @@ class productController {
             }, {
                 transaction: t
             })
-            t.commit()
+            await t.commit()
             res.status(201).json({
                 msg: `Added New Product`
             })
         } catch (err) {
-            t.rollback()
+            await t.rollback()
             next(err)
         }
     }
