@@ -129,8 +129,6 @@ class productController {
                 listImages
             } = req.body
             const {id} = req.params
-            Product.Update()
-
             const updated = await Product.update({
                 name, 
                 description, 

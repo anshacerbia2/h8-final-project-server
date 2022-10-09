@@ -35,6 +35,9 @@ class cartController {
         try {
             const {id} = req.params
             await Cart.destroy()
+            res.status(200).json({
+                msg: `Cart with id ${id} success deleted`
+            })
         } catch (err) {
             next(err)
         }
