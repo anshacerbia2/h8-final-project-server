@@ -4,9 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^3.10.3",
+    "axios": "^1.1.2",
+    "graphql": "^16.6.0",
+    "ioredis": "^5.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
