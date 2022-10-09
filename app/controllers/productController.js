@@ -1,4 +1,12 @@
-const {Product, Location, SubCategory, Category, User, sequelize, Image} = require('../models');
+const {
+    Product, 
+    Location, 
+    SubCategory, 
+    Category, 
+    User, 
+    sequelize, 
+    Image
+} = require('../models');
 
 class productController {
     static async readAll(req, res, next){
@@ -11,6 +19,22 @@ class productController {
             next(err)
         }
     }
+
+    static async readAllProdSeller(req, res, next){
+        try {
+            const {id: UserId} = req.user
+            const data = await Product.findAll({
+                include: [Location, SubCategory],
+                where: {
+                    UserId
+                }
+            })
+            res.status(200).json(data)
+        } catch (err) {
+            next(err)
+        }
+    }
+    
     static async readById(req, res, next){
         try {
             const {id} = req.params
@@ -36,6 +60,7 @@ class productController {
             next(err)
         }
     }
+
     static async add(req, res, next){
         const t = await sequelize.transaction();
         try {
@@ -88,6 +113,7 @@ class productController {
             next(err)
         }
     }
+
     static async edit(req, res, next){
         const t = await sequelize.transaction();
         try {
@@ -156,6 +182,7 @@ class productController {
             next(err)
         }
     }
+
     static async delete(req, res, next){
         try {
             const {id} = req.params

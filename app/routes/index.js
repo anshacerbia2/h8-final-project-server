@@ -6,7 +6,7 @@ const adminRouter = require('../routes/admin');
 const { Auth } = require('../middlewares');
 
 router.use('/', userRouter)
-router.use('/pub', custRouter)
+router.use('/cust', custRouter)
 
 router.use(Auth)
 router.use('/seller', sellerRouter)
