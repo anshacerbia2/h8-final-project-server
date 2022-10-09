@@ -4,7 +4,7 @@ class cartController {
     static async readCarts(req, res, next){
         try {
             const {id: UserId} = req.user
-            const data = await axios.findAll({
+            const data = await Cart.findAll({
                 where: {
                     UserId
                 },
@@ -20,7 +20,7 @@ class cartController {
             const {id: UserId} = req.user
             // const { ProductId } = req.body
             const { ProductId } = req.params
-            const data = await axios.create({
+            const data = await Cart.create({
                 UserId,
                 ProductId
             })
@@ -34,7 +34,7 @@ class cartController {
     static async delete(req, res, next){
         try {
             const {id} = req.params
-            await axios.destroy()
+            await Cart.destroy()
         } catch (err) {
             next(err)
         }
@@ -43,7 +43,7 @@ class cartController {
         try {
             const {id} = req.params
             // const {amount} = req.body
-            await axios.update({
+            await Cart.update({
                 ...req.body
             }, {
                 where: {
@@ -61,7 +61,7 @@ class cartController {
         try {
             const {id} = req.params
             // const {ProductId, amount} = req.body
-            await axios.update({
+            await Cart.update({
                 ...req.body
             })
             res.status(200).json({
