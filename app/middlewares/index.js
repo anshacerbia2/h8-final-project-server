@@ -39,7 +39,7 @@ AuthorizationAdmin = async (req, res, next) => {
       throw { msg: `Forbidden` };
     }
     const data = await User.findByPk(isValid.id)
-    if (data.role === `superadmin`) {
+    if (data.role === `admin`) {
         next()
     } else {
       throw {msg: `Forbidden`}
@@ -61,7 +61,7 @@ AuthorizationCust = async (req, res, next) => {
       throw { msg: `Forbidden` };
     }
     const data = await User.findByPk(isValid.id)
-    if (data.role === `superadmin` || data.role === `customer`) {
+    if (data.role === `admin` || data.role === `customer`) {
         next()
     } else {
       throw {msg: `Forbidden`}
@@ -83,7 +83,7 @@ AuthorizationSeller = async (req, res, next) => {
       throw { msg: `Forbidden` };
     }
     const data = await User.findByPk(isValid.id)
-    if (data.role === `superadmin`|| data.role === `seller`) {
+    if (data.role === `admin`|| data.role === `seller`) {
         next()
     } else {
       throw {msg: `Forbidden`}
