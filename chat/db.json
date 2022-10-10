@@ -1,0 +1,35 @@
+{
+    "chats": [
+        {
+            "roomName": "1-2",
+            "userIds": [
+                1,
+                2
+            ],
+            "users": [
+                {
+                    "userId": 2,
+                    "name": "Micky",
+                    "profpic": "http:sadoasoajddas.webp"
+                },
+                {
+                    "userId": 1,
+                    "name": "Ajat",
+                    "profpic": "http:sadoasoajddas.webp"
+                }
+            ],
+            "messages": [
+                {
+                    "userId": 1,
+                    "name": "Ajat",
+                    "message": "Hello World"
+                },
+                {
+                    "userId": 2,
+                    "name": "Micky",
+                    "message": "Hello World 2"
+                }
+            ]
+        }
+    ]
+}
