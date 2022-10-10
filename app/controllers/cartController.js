@@ -1,7 +1,7 @@
 const {Cart, Product} = require('../models');
 
 class cartController {
-    static async readCarts(req, res, next){
+    static async readCarts(req, res, next){ //nanti kayaknya ada amount
         try {
             const {id: UserId} = req.user
             const data = await Cart.findAll({
@@ -19,7 +19,7 @@ class cartController {
         try {
             const {id: UserId} = req.user
             // const { ProductId } = req.body
-            const { ProductId } = req.params
+            const { id: ProductId } = req.params
             const data = await Cart.create({
                 UserId,
                 ProductId
@@ -34,7 +34,11 @@ class cartController {
     static async delete(req, res, next){
         try {
             const {id} = req.params
-            await Cart.destroy()
+            await Cart.destroy({
+                where: {
+                    id
+                }
+            })
             res.status(200).json({
                 msg: `Cart with id ${id} success deleted`
             })

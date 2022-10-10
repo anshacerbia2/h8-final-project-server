@@ -38,11 +38,8 @@ AuthorizationAdmin = async (req, res, next) => {
     if (isValid.id != userId) {
       throw { msg: `Forbidden` };
     }
-    const data = await News.findByPk(isValid.id)
-    if (!data) {
-        throw {msg: `Not Found`}
-    }
-    if (data.role === `admin`) {
+    const data = await User.findByPk(isValid.id)
+    if (data.role === `superadmin`) {
         next()
     } else {
       throw {msg: `Forbidden`}
@@ -63,11 +60,8 @@ AuthorizationCust = async (req, res, next) => {
     if (isValid.id != userId) {
       throw { msg: `Forbidden` };
     }
-    const data = await News.findByPk(isValid.id)
-    if (!data) {
-        throw {msg: `Not Found`}
-    }
-    if (data.role === `admin` || data.role === `customer`) {
+    const data = await User.findByPk(isValid.id)
+    if (data.role === `superadmin` || data.role === `customer`) {
         next()
     } else {
       throw {msg: `Forbidden`}
@@ -88,11 +82,8 @@ AuthorizationSeller = async (req, res, next) => {
     if (isValid.id != userId) {
       throw { msg: `Forbidden` };
     }
-    const data = await News.findByPk(isValid.id)
-    if (!data) {
-        throw {msg: `Not Found`}
-    }
-    if (data.role === `admin`|| data.role === `seller`) {
+    const data = await User.findByPk(isValid.id)
+    if (data.role === `superadmin`|| data.role === `seller`) {
         next()
     } else {
       throw {msg: `Forbidden`}
