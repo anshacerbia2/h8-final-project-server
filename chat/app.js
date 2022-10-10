@@ -25,7 +25,7 @@ app.get("/", (req, res, next) => {
     res.send("hello word")
 })
 
-io.on("connection", async (socket) => {
+io.on("connection", (socket) => {
     let loggedInUserId = 0 //ntar ambil dari localStorage di tempelin ke socket.emit client
     let targetId = 0
     let roomData = undefined
@@ -80,19 +80,19 @@ io.on("connection", async (socket) => {
         socket.join(payload.roomName)
     })
     socket.on("send-chat", async (chat, name) => {
-        console.log(chat, name)
-        console.log(roomData, targetId, loggedInUserId)
-        // let chatData = {
-        //     userId: loggedInUserId,
-        //     name: loggedInUserData.name,
-        //     message: chat,
-        //     roomId: roomData.roomId,
-        // }
-        // let chatInsertResponse = await chats.insertOne(chatData)
-        // io.to(roomData.roomName).emit("send-chat", {
-        //     "_id": chatInsertResponse["insertedId"],
-        //     ...chatData
-        // })
+        let targetRoom = await rooms.findOne({ userIds: { $all: [+loggedInUserId, +targetId] } })
+        roomData = targetRoom
+        let chatData = {
+            userId: loggedInUserId,
+            name,
+            message: chat,
+            roomId: roomData["_id"],
+        }
+        let chatInsertResponse = await chats.insertOne(chatData)
+        io.to(roomData.roomName).emit("send-chat", {
+            "_id": chatInsertResponse["insertedId"],
+            ...chatData
+        })
     })
     // await chats.updateMany({ roomId: ObjectId("633fc9cdfd8f9b7645d52be9") }, { $set: { roomId: ObjectId("6343a10d76db83edd1a83f34") } })
     // await rooms.deleteMany()
