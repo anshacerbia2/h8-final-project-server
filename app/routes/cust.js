@@ -11,9 +11,10 @@ router.use(Auth) //
 router.use(AuthorizationCust) //
 
 router.get('/carts', cartController.readCarts) //
+router.patch('/carts/inc/:id', cartController.editAmountInc) 
+router.patch('/carts/dec/:id', cartController.editAmountDec) 
 router.post('/carts/:id', cartController.add) //
 router.delete('/carts/:id', cartController.delete) //
-router.patch('/carts/:id', cartController.editAmount) 
 router.put('/carts/:id', cartController.edit)
 
 module.exports = router
