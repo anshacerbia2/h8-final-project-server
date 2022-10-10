@@ -59,10 +59,7 @@ class userController {
             const {email, password} = req.body
             const data = await User.findOne({
                 where: {
-                    [Op.or]: {
-                        email,
-                        username: email
-                    } 
+                    email
                 }
             })
             if (!data) {
