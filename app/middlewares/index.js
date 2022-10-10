@@ -5,7 +5,6 @@ const {User} = require('../models');
 Auth = async (req, res, next) => {
   try {
     const { access_token } = req.headers;
-    console.log("🚀 ~ file: index.js ~ line 8 ~ Auth= ~ access_token", access_token)
     if (!access_token) {
       throw { msg: `Unathorized` };
     }

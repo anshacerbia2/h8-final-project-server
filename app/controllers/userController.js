@@ -56,7 +56,6 @@ class userController {
 
     static async login(req, res, next){
         try {
-            console.log(`><><<><><><><><><><<<<<<<<`);
             const {email, password} = req.body
             const data = await User.findOne({
                 where: {
