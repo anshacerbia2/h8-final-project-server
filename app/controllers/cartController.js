@@ -4,6 +4,7 @@ class cartController {
     static async readCarts(req, res, next){
         try {
             const {id: UserId} = req.user
+            console.log("🚀 ~ file: cartController.js ~ line 7 ~ cartController ~ readCarts ~ UserId", UserId)
             const data = await Cart.findAll({
                 where: {
                     UserId
