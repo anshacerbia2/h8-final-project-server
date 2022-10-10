@@ -77,7 +77,8 @@ class userController {
             const access_token = jwt.sign(payload, process.env.SECRET)
             res.status(200).json({
                 access_token,
-                username: data.username
+                fname: data.fname,
+                id: data.id
             })
         } catch (err) {
             next(err)

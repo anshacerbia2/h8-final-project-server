@@ -20,7 +20,7 @@ class orderController {
             }, {
                 transaction: t
             })
-            const totalPrice = carts.map(el => el.Products.price)
+            const totalPrice = carts.map(el => el.Products.price * el.quantiy)
             const listProducts = carts.map(el => el.Products)
 
             // const response = await axios.get() //sini midtrans

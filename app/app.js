@@ -29,7 +29,7 @@ app.use((err, req, res, next) => {
       msg = err.msg;
       break;
     case `Email or Username and Password is Invalid`:
-      code = 401;
+      code = 400;
       msg = err.msg;
       break;
     case `Unathorized`:
