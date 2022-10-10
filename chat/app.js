@@ -25,7 +25,7 @@ app.get("/", (req, res, next) => {
     res.send("hello word")
 })
 
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
     let loggedInUserId = 0 //ntar ambil dari localStorage di tempelin ke socket.emit client
     let targetId = 0
     let roomData = undefined
@@ -98,15 +98,15 @@ io.on("connection", (socket) => {
     // await rooms.deleteMany()
     // await rooms.insertOne(
     //     {
-    //         "roomName": "1-2",
+    //         "roomName": "1-3",
     //         "userIds": [
     //             1,
-    //             2
+    //             3
     //         ],
     //         "users": [
     //             {
-    //                 "userId": 2,
-    //                 "name": "Micky",
+    //                 "userId": 3,
+    //                 "name": "Jonathan",
     //                 "profpic": "https://cdn.discordapp.com/attachments/882091875589324836/1023414212824940594/Screenshot_2022-09-25-09-02-03-65_1c337646f29875672b5a61192b9010f9.jpg"
     //             },
     //             {
@@ -197,7 +197,7 @@ run()
         httpServer.listen(port, () => {
             console.log("Chat server running on port", port)
             db = getDb()
-            rooms = db.collection('room');
+            rooms = db.collection('room')
             chats = db.collection('chat')
         })
     })
