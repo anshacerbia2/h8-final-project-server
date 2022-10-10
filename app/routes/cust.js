@@ -18,5 +18,7 @@ router.post('/carts/:id', cartController.add) //
 router.delete('/carts/:id', cartController.delete) //
 router.put('/carts/:id', cartController.edit)
 router.get('/auctions', auctionController.custReadAuction)
+router.get('/userauctions', auctionController.readAuctionByCustId)
+router.get('/auctions/:id', auctionController.readAuctionById)
 
 module.exports = router
