@@ -24,10 +24,10 @@ let db = getDb()
 let rooms = ""
 let chats = ""
 
+let loggedInUserId = 0 //ntar ambil dari localStorage di tempelin ke socket.emit client
+let targetId = 0
+let roomData = undefined
 io.on("connection", async (socket) => {
-    let loggedInUserId = 0 //ntar ambil dari localStorage di tempelin ke socket.emit client
-    let targetId = 0
-    let roomData = undefined
 
     socket.emit("render-chat")
     // socket.on("send-id", async (targetUserId, targetUserData, currentUserId, currentUserData) => {
@@ -76,13 +76,18 @@ io.on("connection", async (socket) => {
         }
     })
     socket.on("join-room", (payload) => {
+        console.log(payload, "asdhiasudhasuihdais")
         socket.join(payload.roomName)
     })
-    socket.on("send-chat", async (chat, name) => {
-        let targetRoom = await rooms.findOne({ userIds: { $all: [+loggedInUserId, +targetId] } })
+    socket.on("send-chat", async (chat, name, senderId) => {
+        console.log(senderId, targetId)
+        let targetRoom = await rooms.findOne({ userIds: { $all: [+senderId, +targetId] } })
+        // console.log(targetRoom, "server app lane 84")
         roomData = targetRoom
+        console.log(roomData, "room data line 87 server app")
+
         let chatData = {
-            userId: loggedInUserId,
+            userId: senderId,
             name,
             message: chat,
             roomId: roomData["_id"],
