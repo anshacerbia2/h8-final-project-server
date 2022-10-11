@@ -84,6 +84,20 @@ class userController {
             next(err)
         }
     }
+
+    static async readUserById(req, res, next){
+        try {
+            const {id} = req.params
+            console.log("🚀 ~ file: userController.js ~ line 91 ~ userController ~ readUserById ~ id", id)
+            const data = await User.findByPk(id, {
+                attributes: ['fName', 'lName', 'userImg']
+            })
+            res.status(200).json(data)
+        } catch (err) {
+            console.log("🚀 ~ file: userController.js ~ line 98 ~ userController ~ readUserById ~ err", err)
+            next(err)
+        }
+    }
 }
 
 module.exports = userController

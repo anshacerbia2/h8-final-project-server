@@ -23,6 +23,7 @@ Auth = async (req, res, next) => {
     };
     next()
   } catch (err) {
+    console.log("🚀 ~ file: index.js ~ line 27 ~ Auth= ~ err", err)
     next(err);
   }
 };
