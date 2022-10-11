@@ -8,6 +8,7 @@ const { Server } = require("socket.io");
 const { run, getDb } = require("./config/mongo");
 const httpServer = http.createServer(app);
 const cors = require("cors")
+const router = require("./routes/index")
 app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -17,13 +18,11 @@ const io = new Server(httpServer, {
     }
 });
 
+app.use("/", router)
+
 let db = getDb()
 let rooms = ""
 let chats = ""
-
-app.get("/", (req, res, next) => {
-    res.send("hello word")
-})
 
 io.on("connection", async (socket) => {
     let loggedInUserId = 0 //ntar ambil dari localStorage di tempelin ke socket.emit client
@@ -137,16 +136,6 @@ io.on("connection", async (socket) => {
 //         }
 //     ])
 
-app.get("/rooms/:currentId", async (req, res, next) => {
-    try {
-        rooms = db.collection('room');
-        let { currentId } = req.params
-        let targetRooms = await rooms.find({ userIds: { $all: [+currentId] } }).toArray()
-        res.status(200).json(targetRooms)
-    } catch (err) {
-        console.log(err)
-    }
-})
 app.get("/room/:currentId/:targetId", async (req, res, next) => {
     try {
         rooms = db.collection('room');
