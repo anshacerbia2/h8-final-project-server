@@ -136,50 +136,50 @@ io.on("connection", async (socket) => {
 //         }
 //     ])
 
-app.get("/room/:currentId/:targetId", async (req, res, next) => {
-    try {
-        rooms = db.collection('room');
-        let { currentId, targetId } = req.params
-        let targetRoom = await rooms.findOne({ userIds: { $all: [+currentId, +targetId] } })
-        roomData = targetRoom
-        // if (!targetRoom.roomName) {
-        //     //get data current user sama target user by id nanti
-        //     let roomInsertData = {
-        //         roomName: `${currentId}-${targetId}`,
-        //         userIds: [currentId, targetId],
-        //         users: [
-        //             {
-        //                 userId: currentId,
-        //                 // name: `${currentUserFirstName} ${currentUserLastName}`, 
-        //                 // profpic: currentUserProfpic 
-        //             },
-        //             {
-        //                 userId: targetId,
-        //                 // name: `${targetUserFirstName} ${targetUserLastName}`, 
-        //                 // profpic: targetUserProfpic 
-        //             }
-        //         ]
-        //     }
-        //     let createRoom = await rooms.insertOne(roomInsertData)
-        //     targetRoom = await rooms.findOne({ "_id": createRoom["insertedId"] })
-        // }
-        res.status(200).json(targetRoom)
-    } catch (err) {
-        console.log(err)
-    }
-})
-app.get("/chats/:roomId", async (req, res, next) => {
-    try {
-        chats = db.collection('chat')
-        let { roomId } = req.params
-        console.log(roomId)
-        let targetChats = await chats.find({ roomId: ObjectId(roomId) }).toArray()
-        console.log(targetChats)
-        res.status(200).json(targetChats)
-    } catch (err) {
-        console.log(err)
-    }
-})
+// app.get("/room/:currentId/:targetId", async (req, res, next) => {
+//     try {
+//         rooms = db.collection('room');
+//         let { currentId, targetId } = req.params
+//         let targetRoom = await rooms.findOne({ userIds: { $all: [+currentId, +targetId] } })
+//         roomData = targetRoom
+//         // if (!targetRoom.roomName) {
+//         //     //get data current user sama target user by id nanti
+//         //     let roomInsertData = {
+//         //         roomName: `${currentId}-${targetId}`,
+//         //         userIds: [currentId, targetId],
+//         //         users: [
+//         //             {
+//         //                 userId: currentId,
+//         //                 // name: `${currentUserFirstName} ${currentUserLastName}`, 
+//         //                 // profpic: currentUserProfpic 
+//         //             },
+//         //             {
+//         //                 userId: targetId,
+//         //                 // name: `${targetUserFirstName} ${targetUserLastName}`, 
+//         //                 // profpic: targetUserProfpic 
+//         //             }
+//         //         ]
+//         //     }
+//         //     let createRoom = await rooms.insertOne(roomInsertData)
+//         //     targetRoom = await rooms.findOne({ "_id": createRoom["insertedId"] })
+//         // }
+//         res.status(200).json(targetRoom)
+//     } catch (err) {
+//         console.log(err)
+//     }
+// })
+// app.get("/chats/:roomId", async (req, res, next) => {
+//     try {
+//         chats = db.collection('chat')
+//         let { roomId } = req.params
+//         console.log(roomId)
+//         let targetChats = await chats.find({ roomId: ObjectId(roomId) }).toArray()
+//         console.log(targetChats)
+//         res.status(200).json(targetChats)
+//     } catch (err) {
+//         console.log(err)
+//     }
+// })
 
 run()
     .then(() => {
