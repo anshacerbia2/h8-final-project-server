@@ -18,7 +18,7 @@ app.use((err, req, res, next) => {
   console.log("🚀 ~ file: app.js ~ line 18 ~ app.use ~ err", err)
   let code = 500;
   let msg = `Internal Server Error`;
-
+  // console.log(err, "<<<<<<<<<<<<");
   switch (err.msg) {
     case `Bad Request`:
       code = 400;
@@ -52,3 +52,5 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log("🚀 ~ Server Running In Port ~", port);
 });
+
+module.exports = app;
